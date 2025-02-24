@@ -7,7 +7,7 @@ scrape_configs:
     static_configs:
       - targets: ["43.200.88.16:3000"]
 
-  - job_name: "dev-node-exporter"
+  - job_name: "prod-node-exporter"
     static_configs:
       - targets: ["43.200.88.16:9100"]
 
