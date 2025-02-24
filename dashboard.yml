@@ -10,12 +10,12 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin # 초기 admin 패스워드, 필요시 변경
     ports:
       - "3000:3000"
     volumes:
       - grafana-data:/var/lib/grafana
+    env_file:
+      - .env
 
 volumes:
   grafana-data:
