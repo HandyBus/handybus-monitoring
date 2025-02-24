@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s # 전체 스크랩 주기 (15초)
+
+scrape_configs:
+  - job_name: "nestjs"
+    metrics_path: "/metrics" # NestJS 애플리케이션에서 매트릭을 노출하는 엔드포인트
+    static_configs:
+      - targets: ["43.200.7.197:3000"] # NestJS 서버의 IP와 포트 (필요에 따라 수정)
+
+  - job_name: "node-exporter"
+    static_configs:
+      - targets: ["43.200.7.197:9100"]
