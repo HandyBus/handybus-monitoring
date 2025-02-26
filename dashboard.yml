@@ -3,7 +3,11 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     volumes:
-      - ./prometheus:/etc/prometheus # ./prometheus 디렉토리에 prometheus.yml 파일 위치
+      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    command:
+      - "--storage.tsdb.path=/prometheus"
+      - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
       - "9090:9090"
 
@@ -14,6 +18,8 @@ services:
       - "3000:3000"
     volumes:
       - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
     env_file:
       - .env
 
@@ -41,3 +47,4 @@ services:
 
 volumes:
   grafana-data:
+  prometheus-data:
